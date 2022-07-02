@@ -1,0 +1,36 @@
+{
+  "navigationConfig": [
+    {
+      "routerLink": "/home",
+      "name": "Home",
+      "show": true
+    },
+    {
+      "routerLink": "#",
+      "name": "Departures",
+      "show": true,
+      "links": [
+        {
+          "routerLink": "/departures/trains",
+          "name": "Trains",
+          "show": true
+        },
+        {
+          "routerLink": "/departures/buses",
+          "name": "Buses",
+          "show": true
+        },
+        {
+          "routerLink": "/departures/flights",
+          "name": "Flights",
+          "show": true
+        }
+      ]
+    },
+    {
+      "routerLink": "/about",
+      "name": "About",
+      "show": false
+    }
+  ]
+}

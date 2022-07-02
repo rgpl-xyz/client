@@ -40,7 +40,8 @@
             "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
             "allowSeparatedGroups": false
           }
-        ]
+        ],
+        "no-unused-vars": "off"
       }
     },
     {
