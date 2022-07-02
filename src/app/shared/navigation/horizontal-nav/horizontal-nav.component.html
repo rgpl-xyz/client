@@ -1,36 +1,38 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="/">The North Express</a>
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarColor02"
-      aria-controls="navbarColor02"
+      data-bs-target="#navbar-default"
+      aria-controls="navbar-default"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarColor02">
+    <div class="collapse navbar-collapse" id="navbar-default">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="#"
-            >Home
+        <ng-container *ngFor="let link of navigationLinks">
+          <ng-container
+            *ngTemplateOutlet="
+              link.links?.length ? multiple : single;
+              context: { link: link }
+            "
+          >
+          </ng-container>
+        </ng-container>
+
+        <!-- <li class="nav-item">
+          <a class="nav-link active" href="#">Home
             <span class="visually-hidden">(current)</span>
           </a>
         </li>
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-            href="#"
-            role="button"
-            aria-haspopup="true"
-            aria-expanded="false"
-            >Dropdown</a
-          >
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">Dropdown</a>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="#">Action</a>
             <a class="dropdown-item" href="#">Another action</a>
@@ -47,7 +49,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
-        </li>
+        </li> -->
       </ul>
       <form class="d-flex">
         <input class="form-control me-sm-2" type="text" placeholder="Search" />
@@ -58,3 +60,41 @@
     </div>
   </div>
 </nav>
+
+<ng-template #single let-link="link">
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      [routerLink]="link.routerLink"
+      routerLinkActive="active"
+      [id]="'link-{{link.name | kebabcase}}'"
+      >{{ link.name }}
+    </a>
+  </li>
+</ng-template>
+
+<ng-template #multiple let-link="link">
+  <li class="nav-item dropdown">
+    <a
+      class="nav-link dropdown-toggle"
+      data-bs-toggle="dropdown"
+      role="button"
+      aria-haspopup="true"
+      aria-expanded="false"
+      [routerLink]="link.routerLink"
+      routerLinkActive="active"
+      [id]="'link-{{link.name | kebabcase}}'"
+      >{{ link.name }}</a
+    >
+    <div class="dropdown-menu">
+      <a
+        class="dropdown-item"
+        [routerLink]="childLink.routerLink"
+        routerLinkActive="active"
+        [id]="'link-{{link.name | kebabcase}}'"
+        *ngFor="let childLink of link.links"
+        >{{ childLink.name }}</a
+      >
+    </div>
+  </li>
+</ng-template>
