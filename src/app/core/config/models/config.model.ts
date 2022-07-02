@@ -1,4 +1,5 @@
 export interface Config {
+  appName: string;
   navigationConfig: NavigationConfig[];
 }
 

@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { SharedRoutingModule } from './shared-routing.module';
 import { HorizontalNavComponent } from './navigation/horizontal-nav/horizontal-nav.component';
+import { KebabCasePipe } from './pipes/kebab-case.pipe';
+import { SharedRoutingModule } from './shared-routing.module';
 
 @NgModule({
-  declarations: [HorizontalNavComponent],
+  declarations: [HorizontalNavComponent, KebabCasePipe],
   imports: [CommonModule, SharedRoutingModule],
-  exports: [HorizontalNavComponent, CommonModule]
+  exports: [HorizontalNavComponent, KebabCasePipe, CommonModule]
 })
 export class SharedModule {}

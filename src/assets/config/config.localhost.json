@@ -1,4 +1,5 @@
 {
+  "appName": "The North Express",
   "navigationConfig": [
     {
       "routerLink": "/home",
