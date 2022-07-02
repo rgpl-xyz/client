@@ -7,3 +7,6 @@ e2e/**
 **/*.spec.ts
 **/*.po.ts
 **/schematics/*
+src/test.ts
+src/polyfills.ts
+src/main.ts
