@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IsActiveMatchOptions } from '@angular/router';
 import { NavigationConfig } from 'src/app/core/config/models/config.model';
 import { ConfigService } from 'src/app/core/config/services/config.service';
 
@@ -9,6 +10,12 @@ import { ConfigService } from 'src/app/core/config/services/config.service';
 })
 export class HorizontalNavComponent implements OnInit {
   navigationLinks: NavigationConfig[] | undefined;
+  activeMatchOptions: IsActiveMatchOptions = {
+    matrixParams: 'subset',
+    queryParams: 'subset',
+    paths: 'subset',
+    fragment: 'ignored'
+  };
 
   constructor(private configService: ConfigService) {}
 
