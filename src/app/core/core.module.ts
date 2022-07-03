@@ -1,8 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule, Optional, SkipSelf } from '@angular/core';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {
+  APP_INITIALIZER,
+  ErrorHandler,
+  NgModule,
+  Optional,
+  SkipSelf
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ConfigService } from './config/services/config.service';
+import { ErrorHandlerService } from './error-handler/error-handler.service';
+import { HttpErrorInterceptor } from './http-interceptors/http-error.interceptor';
 import { WindowToken, windowProvider } from './window/window.provider';
+import { ToastComponent } from './notification/toast/toast.component';
+import { ToasterComponent } from './notification/toaster/toaster.component';
 
 const getConfigFile = () => {
   // eslint-disable-next-line no-undef
@@ -21,8 +32,7 @@ export const configFactory = (configService: ConfigService) => {
 };
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, FormsModule, HttpClientModule],
   providers: [
     {
       provide: APP_INITIALIZER,
@@ -30,8 +40,12 @@ export const configFactory = (configService: ConfigService) => {
       deps: [ConfigService],
       multi: true
     },
-    { provide: WindowToken, useFactory: windowProvider }
-  ]
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+    { provide: WindowToken, useFactory: windowProvider },
+    { provide: ErrorHandler, useClass: ErrorHandlerService }
+  ],
+  declarations: [ToastComponent, ToasterComponent],
+  exports: [ToastComponent, ToasterComponent]
 })
 export class CoreModule {
   constructor(
