@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AgGridModule } from 'ag-grid-angular';
 
 import { SelectComponent } from './forms/select/select.component';
 import { HorizontalNavComponent } from './navigation/horizontal-nav/horizontal-nav.component';
@@ -16,7 +15,7 @@ import { FooterComponent } from './footer/footer.component';
     SelectComponent,
     FooterComponent
   ],
-  imports: [CommonModule, FormsModule, SharedRoutingModule, AgGridModule],
+  imports: [CommonModule, FormsModule, SharedRoutingModule],
   exports: [
     CommonModule,
     SelectComponent,
