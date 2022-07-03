@@ -1,19 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { SelectComponent } from './forms/select/select.component';
 import { HorizontalNavComponent } from './navigation/horizontal-nav/horizontal-nav.component';
 import { KebabCasePipe } from './pipes/kebab-case.pipe';
 import { SharedRoutingModule } from './shared-routing.module';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [HorizontalNavComponent, KebabCasePipe, SelectComponent],
-  imports: [CommonModule, FormsModule, SharedRoutingModule],
+  declarations: [
+    HorizontalNavComponent,
+    KebabCasePipe,
+    SelectComponent,
+    FooterComponent
+  ],
+  imports: [CommonModule, FormsModule, SharedRoutingModule, AgGridModule],
   exports: [
     CommonModule,
     SelectComponent,
     HorizontalNavComponent,
+    FooterComponent,
     KebabCasePipe
   ]
 })
