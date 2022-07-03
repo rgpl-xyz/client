@@ -64,13 +64,15 @@
       >{{ link.name }}
     </a>
     <div class="dropdown-menu">
-      <a
-        class="dropdown-item"
-        [routerLink]="childLink.routerLink"
-        routerLinkActive="active"
-        [id]="childLink.name | kebabcase"
-        *ngFor="let childLink of link.links"
-        >{{ childLink.name }}</a
+      <ng-container *ngFor="let childLink of link.links">
+        <a
+          class="dropdown-item"
+          [routerLink]="childLink.routerLink"
+          routerLinkActive="active"
+          [id]="childLink.name | kebabcase"
+          *ngIf="childLink.show"
+          >{{ childLink.name }}</a
+        ></ng-container
       >
     </div>
   </li>

@@ -7,21 +7,24 @@ import { HorizontalNavComponent } from './navigation/horizontal-nav/horizontal-n
 import { KebabCasePipe } from './pipes/kebab-case.pipe';
 import { SharedRoutingModule } from './shared-routing.module';
 import { FooterComponent } from './footer/footer.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     HorizontalNavComponent,
     KebabCasePipe,
     SelectComponent,
-    FooterComponent
+    FooterComponent,
+    PageNotFoundComponent
   ],
   imports: [CommonModule, FormsModule, SharedRoutingModule],
   exports: [
     CommonModule,
+    KebabCasePipe,
     SelectComponent,
     HorizontalNavComponent,
     FooterComponent,
-    KebabCasePipe
+    PageNotFoundComponent
   ]
 })
 export class SharedModule {}
