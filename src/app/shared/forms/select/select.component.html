@@ -7,14 +7,15 @@
     [attr.disabled]="isEnabled ? null : ''"
     [(ngModel)]="selectedOption"
     (change)="selectedChangedHandler(selectedOption)"
+    [compareWith]="compareFn"
   >
     <option [ngValue]="undefined" selected>{{ unavailableLabel }}</option>
     <option
-      *ngFor="let option of options"
-      [value]="option.value"
+      *ngFor="let option of options; trackBy: trackByFn"
+      [ngValue]="option"
       [attr.disabled]="option.isEnabled ? null : ''"
     >
-      {{ option.label }}
+      {{ option.value }}
     </option>
   </select>
 </div>

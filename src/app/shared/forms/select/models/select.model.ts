@@ -1,5 +1,5 @@
 export interface SelectModel {
-  label: string;
+  key: string;
   value: string | null;
   isEnabled?: boolean;
 }

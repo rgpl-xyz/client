@@ -1,10 +1,17 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 import { SelectModel } from './models/select.model';
 
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.sass']
+  styleUrls: ['./select.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectComponent {
   @Input() id?: string | undefined;
@@ -15,13 +22,24 @@ export class SelectComponent {
   @Input() isEnabled: boolean = true;
   @Input() unavailableLabel: string = '';
 
-  @Output() changeSelected: EventEmitter<string> = new EventEmitter(true);
+  @Output() changeSelected: EventEmitter<SelectModel> = new EventEmitter(true);
 
-  selectedOption: string | undefined;
+  selectedOption: SelectModel | undefined;
 
   constructor() {}
 
-  selectedChangedHandler(selectedOption: string | undefined) {
+  selectedChangedHandler(selectedOption: SelectModel | undefined) {
     this.changeSelected.emit(selectedOption);
+  }
+
+  compareFn(
+    optionOne: SelectModel | undefined,
+    optionTwo: SelectModel | undefined
+  ): boolean {
+    return optionOne?.key === optionTwo?.key;
+  }
+
+  trackByFn(_index: number, option: SelectModel) {
+    return option.key;
   }
 }
