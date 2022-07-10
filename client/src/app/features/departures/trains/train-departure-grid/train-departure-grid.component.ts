@@ -1,20 +1,15 @@
-import { DatePipe, TitleCasePipe } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import {
   CellClickedEvent,
   ColDef,
   FirstDataRenderedEvent,
-  ModuleRegistry,
   ValueFormatterParams
 } from '@ag-grid-community/core';
+import { DatePipe, TitleCasePipe } from '@angular/common';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Observable, map, of } from 'rxjs';
 import { SelectModel } from 'src/app/shared/forms/select/models/select.model';
 import { TrainDepartureService } from '../../services/train-departure.service';
 import { TrainDepartureGrid } from '../models/trains.model';
-import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
-
-ModuleRegistry.registerModules([ClientSideRowModelModule]);
-
 @Component({
   selector: 'app-train-departure-grid',
   templateUrl: './train-departure-grid.component.html',

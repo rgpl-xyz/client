@@ -6,7 +6,12 @@ import { DeparturesRoutingModule } from './departures-routing.module';
 import { StationComponent } from './trains/station/station.component';
 import { TrainsComponent } from './trains/trains.component';
 import { TrainDepartureGridComponent } from './trains/train-departure-grid/train-departure-grid.component';
+
+import { ModuleRegistry } from '@ag-grid-community/core';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 import { AgGridModule } from '@ag-grid-community/angular';
+
+ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
 @NgModule({
   declarations: [
@@ -15,11 +20,6 @@ import { AgGridModule } from '@ag-grid-community/angular';
     TrainDepartureGridComponent
   ],
   providers: [DatePipe, TitleCasePipe],
-  imports: [
-    CommonModule,
-    SharedModule,
-    DeparturesRoutingModule,
-    AgGridModule.withComponents([])
-  ]
+  imports: [CommonModule, SharedModule, DeparturesRoutingModule, AgGridModule]
 })
 export class DeparturesModule {}
