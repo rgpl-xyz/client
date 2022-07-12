@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpRequest
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { EMPTY, Observable, catchError, throwError } from 'rxjs';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
@@ -17,13 +17,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      tap({
-        error: (err: any) => {
-          if (err instanceof HttpErrorResponse) {
-            const appErrorHandler = this.injector.get(ErrorHandler);
-            appErrorHandler.handleError(err);
-          }
+      catchError((err: any) => {
+        if (err instanceof HttpErrorResponse) {
+          return throwError(() => err);
         }
+
+        return EMPTY;
       })
     );
   }

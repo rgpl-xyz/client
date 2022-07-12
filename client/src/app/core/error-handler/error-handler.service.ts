@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandler, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { NotificationService } from '../notification/notification.service';
+import { ErrorResponse } from './models/error.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,12 @@ export class ErrorHandlerService extends ErrorHandler {
     if (!environment.production) {
       title += ' See console for details.';
     }
-
-    this.notificationService.error(title, error.message);
+    let friendlyErrorMessage = '';
+    if (error.name === 'HttpErrorResponse') {
+      const err = (error as any).error as ErrorResponse;
+      friendlyErrorMessage = `${err.errors[0].message}.\nRequestId: ${err.requestId}`;
+    }
+    this.notificationService.error(title, friendlyErrorMessage);
 
     super.handleError(error);
   }
