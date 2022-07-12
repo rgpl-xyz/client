@@ -16,7 +16,6 @@ import { ToastComponent } from './notification/toast/toast.component';
 import { ToasterComponent } from './notification/toaster/toaster.component';
 
 const getConfigFile = () => {
-  // eslint-disable-next-line no-undef
   const hostname = window.location.hostname;
   const envs = ['localhost', 'dev', 'qaauto', 'qa', 'lpt', 'uat'];
   const currentEnv = envs.find((e) => hostname.includes(e)) || 'prod';

@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx,html,css,scss}' --quiet --fix",
@@ -12,7 +13,9 @@
     "prepare": "cd .. && husky install client/.husky",
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "build-stats": "ng build --stats-json",
+    "analyze": "webpack-bundle-analyzer dist/client/stats.json"
   },
   "private": true,
   "dependencies": {
