@@ -10,18 +10,18 @@
       ></app-select>
     </div>
     <div class="col-sm-12 col-lg-3">
-      <app-select
-        id="stations"
-        label="Stations"
-        [options]="stations$ | async"
-        [isEnabled]="!!(stations$ | async)?.length"
-        [unavailableLabel]="
-          !!(stations$ | async)?.length
-            ? selectStationLabel
-            : unavailableStationLabel
-        "
-        (changeSelected)="selectStation($event)"
-      ></app-select>
+      <ng-container *ngrxLet="stations$ as stations">
+        <app-select
+          id="stations"
+          label="Stations"
+          [options]="stations"
+          [isEnabled]="!!stations?.length"
+          [unavailableLabel]="
+            !!stations?.length ? selectStationLabel : unavailableStationLabel
+          "
+          (changeSelected)="selectStation($event)"
+        ></app-select>
+      </ng-container>
     </div>
   </div>
 </div>
